@@ -1,21 +1,20 @@
 import path from 'path';
-import test from 'ava';
 import globby from 'globby';
 import {values} from 'lodash';
 import rules from '.';
 
-test('exports all rules', async t => {
+test('exports all rules', async () => {
 	const expected = (await glob('*.js')).sort();
 	const actual = Object.keys(rules).sort();
-	t.deepEqual(actual, expected);
+	expect(actual).toMatchObject(expected);
 });
 
-test('rules export functions', t => {
+test('rules export functions', () => {
 	const actual = values(rules);
-	t.true(actual.every(rule => typeof rule === 'function'));
+	expect(actual.every(rule => typeof rule === 'function')).toBeTruthy();
 });
 
-async function glob(pattern) {
+async function glob(pattern: string) {
 	const files = await globby([path.join(__dirname, pattern)], {
 		ignore: ['**/index.js', '**/*.test.js'],
 		cwd: __dirname
@@ -23,10 +22,10 @@ async function glob(pattern) {
 	return files.map(relative).map(toExport);
 }
 
-function relative(filePath) {
+function relative(filePath: string) {
 	return path.relative(__dirname, filePath);
 }
 
-function toExport(fileName) {
+function toExport(fileName: string) {
 	return path.basename(fileName, path.extname(fileName));
 }
