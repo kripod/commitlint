@@ -3,7 +3,7 @@ import {Commit} from '@commitlint/parse';
 /**
  * Rules always have a condition.
  * It can be either "always" (as tested), or "never" (as tested).
- * For example, `header-full-stop` can be enforced as "always", or "never".
+ * For example, `header-full-stop` can be enforced as "always" or "never".
  */
 export type RuleCondition = 'always' | 'never';
 
@@ -16,7 +16,7 @@ export type RuleOutcome = [boolean, string?];
 
 /**
  * Rules receive a parsed commit, condition, and possible additional settings through value.
- * When no rule condition is provided, it will default to `always`.
+ * When no rule condition is provided, it should default to `always`.
  */
 export type Rule<Value = never> = (
 	parse: Commit,
