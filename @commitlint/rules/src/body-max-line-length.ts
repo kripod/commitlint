@@ -1,9 +1,10 @@
 import {maxLineLength} from '@commitlint/ensure';
+import {Rule} from './types';
 
-export default (parsed, when, value) => {
+const bodyMaxLineLength: Rule<number> = (parsed, when, value) => {
 	const input = parsed.body;
 
-	if (!input) {
+	if (!input || value === undefined) {
 		return [true];
 	}
 
@@ -12,3 +13,5 @@ export default (parsed, when, value) => {
 		`body's lines must not be longer than ${value} characters`
 	];
 };
+
+export default bodyMaxLineLength;

@@ -1,12 +1,15 @@
 import * as ensure from '@commitlint/ensure';
 import message from '@commitlint/message';
+import {Rule} from './types';
 
-export default (parsed, when) => {
+const bodyEmpty: Rule = (parsed, when) => {
 	const negated = when === 'never';
-	const notEmpty = ensure.notEmpty(parsed.body);
+	const notEmpty = ensure.notEmpty(parsed.body || '');
 
 	return [
 		negated ? notEmpty : !notEmpty,
 		message(['body', negated ? 'may not' : 'must', 'be empty'])
 	];
 };
+
+export default bodyEmpty;

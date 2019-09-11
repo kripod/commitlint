@@ -1,7 +1,8 @@
 import toLines from '@commitlint/to-lines';
 import message from '@commitlint/message';
+import {Rule} from './types';
 
-export default (parsed, when) => {
+const bodyLeadingBlank: Rule = (parsed, when) => {
 	// Flunk if no body is found
 	if (!parsed.body) {
 		return [true];
@@ -18,3 +19,5 @@ export default (parsed, when) => {
 		message(['body', negated ? 'may not' : 'must', 'have leading blank line'])
 	];
 };
+
+export default bodyLeadingBlank;
