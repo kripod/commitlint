@@ -3,6 +3,8 @@ const loadRule = (name: string) => {
 	return rule.default || rule;
 };
 
+export * from './types';
+
 export default {
 	'body-case': loadRule('body-case'),
 	'body-empty': loadRule('body-empty'),
