@@ -4,7 +4,7 @@ import {values} from 'lodash';
 import rules from '.';
 
 test('exports all rules', async () => {
-	const expected = (await glob('*.js')).sort();
+	const expected = (await glob('*.ts')).sort();
 	const actual = Object.keys(rules).sort();
 	expect(actual).toMatchObject(expected);
 });
@@ -16,7 +16,7 @@ test('rules export functions', () => {
 
 async function glob(pattern: string) {
 	const files = await globby([path.join(__dirname, pattern)], {
-		ignore: ['**/index.js', '**/*.test.js'],
+		ignore: ['**/index.ts', '**/types.ts', '**/*.test.ts'],
 		cwd: __dirname
 	});
 	return files.map(relative).map(toExport);
