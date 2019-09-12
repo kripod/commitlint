@@ -19,7 +19,7 @@ export type RuleOutcome = [boolean, string?];
  * All rules should provide the most sensible rule condition and value.
  */
 export type Rule<Value = never> = (
-	parse: Commit,
+	parsed: Commit,
 	when?: RuleCondition,
 	value?: Value
 ) => RuleOutcome;
