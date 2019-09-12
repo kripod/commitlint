@@ -1,10 +1,10 @@
 import {maxLength} from '@commitlint/ensure';
 import {Rule} from './types';
 
-const bodyMaxLength: Rule<number> = (parsed, when, value) => {
+const bodyMaxLength: Rule<number> = (parsed, when = 'always', value = 0) => {
 	const input = parsed.body;
 
-	if (!input || value == undefined) {
+	if (!input) {
 		return [true];
 	}
 

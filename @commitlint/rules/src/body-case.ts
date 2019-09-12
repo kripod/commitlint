@@ -2,7 +2,11 @@ import * as ensure from '@commitlint/ensure';
 import message from '@commitlint/message';
 import {Rule} from './types';
 
-const bodyCase: Rule<ensure.TargetCaseType> = (parsed, when, value) => {
+const bodyCase: Rule<ensure.TargetCaseType> = (
+	parsed,
+	when = 'always',
+	value = undefined
+) => {
 	const {body} = parsed;
 
 	if (!body) {

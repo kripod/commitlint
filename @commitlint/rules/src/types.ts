@@ -16,7 +16,7 @@ export type RuleOutcome = [boolean, string?];
 
 /**
  * Rules receive a parsed commit, condition, and possible additional settings through value.
- * When no rule condition is provided, it should default to `always`.
+ * All rules should provide the most sensible rule condition and value.
  */
 export type Rule<Value = never> = (
 	parse: Commit,

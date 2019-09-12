@@ -2,7 +2,7 @@ import toLines from '@commitlint/to-lines';
 import message from '@commitlint/message';
 import {Rule} from './types';
 
-const bodyLeadingBlank: Rule = (parsed, when) => {
+const bodyLeadingBlank: Rule = (parsed, when = 'always') => {
 	// Flunk if no body is found
 	if (!parsed.body) {
 		return [true];

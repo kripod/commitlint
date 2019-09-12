@@ -1,12 +1,12 @@
 import {maxLineLength} from '@commitlint/ensure';
 import {Rule} from './types';
 
-const bodyMaxLineLength: Rule<number> = (
+const footerMaxLineLength: Rule<number> = (
 	parsed,
 	when = 'always',
 	value = 0
 ) => {
-	const input = parsed.body;
+	const input = parsed.footer;
 
 	if (!input) {
 		return [true];
@@ -14,8 +14,8 @@ const bodyMaxLineLength: Rule<number> = (
 
 	return [
 		maxLineLength(input, value),
-		`body's lines must not be longer than ${value} characters`
+		`footer's lines must not be longer than ${value} characters`
 	];
 };
 
-export default bodyMaxLineLength;
+export default footerMaxLineLength;

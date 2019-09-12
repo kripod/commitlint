@@ -2,14 +2,14 @@ import * as ensure from '@commitlint/ensure';
 import message from '@commitlint/message';
 import {Rule} from './types';
 
-const bodyEmpty: Rule = (parsed, when = 'always') => {
+const footerEmpty: Rule = (parsed, when = 'always') => {
 	const negated = when === 'never';
-	const notEmpty = ensure.notEmpty(parsed.body || '');
+	const notEmpty = ensure.notEmpty(parsed.footer || '');
 
 	return [
 		negated ? notEmpty : !notEmpty,
-		message(['body', negated ? 'may not' : 'must', 'be empty'])
+		message(['footer', negated ? 'may not' : 'must', 'be empty'])
 	];
 };
 
-export default bodyEmpty;
+export default footerEmpty;
