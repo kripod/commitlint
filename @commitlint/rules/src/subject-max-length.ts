@@ -1,15 +1,17 @@
 import {maxLength} from '@commitlint/ensure';
 import {Rule} from './types';
 
-const subjectMaxLength: Rule<number> = (parsed, when = 'always', value = 0) => {
-	const input = parsed.subject;
-
-	if (!input) {
+const subjectMaxLength: Rule<number> = (
+	parsed,
+	when = undefined,
+	value = 0
+) => {
+	if (!parsed.subject) {
 		return [true];
 	}
 
 	return [
-		maxLength(input, value),
+		maxLength(parsed.subject, value),
 		`subject must not be longer than ${value} characters`
 	];
 };

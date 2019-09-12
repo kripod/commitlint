@@ -1,13 +1,13 @@
 import {minLength} from '@commitlint/ensure';
 import {Rule} from './types';
 
-const typeMinLength: Rule<number> = (parsed, when = 'always', value = 0) => {
-	const input = parsed.type;
-	if (!input) {
+const typeMinLength: Rule<number> = (parsed, when = undefined, value = 0) => {
+	if (!parsed.type) {
 		return [true];
 	}
+
 	return [
-		minLength(input, value),
+		minLength(parsed.type, value),
 		`type must not be shorter than ${value} characters`
 	];
 };

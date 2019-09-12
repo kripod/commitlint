@@ -9,9 +9,7 @@ const typeCase: Rule<ensure.TargetCaseType | ensure.TargetCaseType[]> = (
 	when = 'always',
 	value = []
 ) => {
-	const {type} = parsed;
-
-	if (!type) {
+	if (!parsed.type) {
 		return [true];
 	}
 
@@ -26,7 +24,7 @@ const typeCase: Rule<ensure.TargetCaseType | ensure.TargetCaseType[]> = (
 	});
 
 	const result = checks.some(check => {
-		const r = ensure.case(type, check.case);
+		const r = ensure.case(parsed.type!, check.case);
 		return negated(check.when) ? !r : r;
 	});
 

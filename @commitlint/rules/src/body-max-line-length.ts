@@ -3,17 +3,15 @@ import {Rule} from './types';
 
 const bodyMaxLineLength: Rule<number> = (
 	parsed,
-	when = 'always',
+	when = undefined,
 	value = 0
 ) => {
-	const input = parsed.body;
-
-	if (!input) {
+	if (!parsed.body) {
 		return [true];
 	}
 
 	return [
-		maxLineLength(input, value),
+		maxLineLength(parsed.body, value),
 		`body's lines must not be longer than ${value} characters`
 	];
 };

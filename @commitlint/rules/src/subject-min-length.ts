@@ -1,13 +1,17 @@
 import {minLength} from '@commitlint/ensure';
 import {Rule} from './types';
 
-const subjectMinLength: Rule<number> = (parsed, when = 'always', value = 0) => {
-	const input = parsed.subject;
-	if (!input) {
+const subjectMinLength: Rule<number> = (
+	parsed,
+	when = undefined,
+	value = 0
+) => {
+	if (!parsed.subject) {
 		return [true];
 	}
+
 	return [
-		minLength(input, value),
+		minLength(parsed.subject, value),
 		`subject must not be shorter than ${value} characters`
 	];
 };

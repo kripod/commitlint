@@ -3,17 +3,15 @@ import {Rule} from './types';
 
 const footerMaxLineLength: Rule<number> = (
 	parsed,
-	when = 'always',
+	when = undefined,
 	value = 0
 ) => {
-	const input = parsed.footer;
-
-	if (!input) {
+	if (!parsed.footer) {
 		return [true];
 	}
 
 	return [
-		maxLineLength(input, value),
+		maxLineLength(parsed.footer, value),
 		`footer's lines must not be longer than ${value} characters`
 	];
 };

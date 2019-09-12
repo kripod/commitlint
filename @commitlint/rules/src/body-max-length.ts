@@ -1,15 +1,13 @@
 import {maxLength} from '@commitlint/ensure';
 import {Rule} from './types';
 
-const bodyMaxLength: Rule<number> = (parsed, when = 'always', value = 0) => {
-	const input = parsed.body;
-
-	if (!input) {
+const bodyMaxLength: Rule<number> = (parsed, when = undefined, value = 0) => {
+	if (!parsed.body) {
 		return [true];
 	}
 
 	return [
-		maxLength(input, value),
+		maxLength(parsed.body, value),
 		`body must not be longer than ${value} characters`
 	];
 };

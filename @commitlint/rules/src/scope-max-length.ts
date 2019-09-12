@@ -1,15 +1,13 @@
 import {maxLength} from '@commitlint/ensure';
 import {Rule} from './types';
 
-const scopeMaxLength: Rule<number> = (parsed, when = 'always', value = 0) => {
-	const input = parsed.scope;
-
-	if (!input) {
+const scopeMaxLength: Rule<number> = (parsed, when = undefined, value = 0) => {
+	if (!parsed.scope) {
 		return [true];
 	}
 
 	return [
-		maxLength(input, value),
+		maxLength(parsed.scope, value),
 		`scope must not be longer than ${value} characters`
 	];
 };

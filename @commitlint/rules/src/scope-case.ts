@@ -9,9 +9,7 @@ const scopeCase: Rule<ensure.TargetCaseType | ensure.TargetCaseType[]> = (
 	when = 'always',
 	value = []
 ) => {
-	const {scope} = parsed;
-
-	if (!scope) {
+	if (!parsed.scope) {
 		return [true];
 	}
 
@@ -28,7 +26,7 @@ const scopeCase: Rule<ensure.TargetCaseType | ensure.TargetCaseType[]> = (
 	// Scopes may contain slash-delimiters to separate them and mark them as individual segments.
 	// This means that each of these segments should be tested separately with `ensure`.
 	const delimiters = /(\/|\\)/g;
-	const scopeSegments = scope.split(delimiters);
+	const scopeSegments = parsed.scope.split(delimiters);
 
 	const result = checks.some(check => {
 		const r = scopeSegments.every(

@@ -1,13 +1,13 @@
 import {minLength} from '@commitlint/ensure';
 import {Rule} from './types';
 
-const scopeMinLength: Rule<number> = (parsed, when = 'always', value = 0) => {
-	const input = parsed.scope;
-	if (!input) {
+const scopeMinLength: Rule<number> = (parsed, when = undefined, value = 0) => {
+	if (!parsed.scope) {
 		return [true];
 	}
+
 	return [
-		minLength(input, value),
+		minLength(parsed.scope, value),
 		`scope must not be shorter than ${value} characters`
 	];
 };

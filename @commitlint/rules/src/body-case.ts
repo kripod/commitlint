@@ -7,14 +7,12 @@ const bodyCase: Rule<ensure.TargetCaseType> = (
 	when = 'always',
 	value = undefined
 ) => {
-	const {body} = parsed;
-
-	if (!body) {
+	if (!parsed.body) {
 		return [true];
 	}
 
 	const negated = when === 'never';
-	const result = ensure.case(body, value);
+	const result = ensure.case(parsed.body, value);
 
 	return [
 		negated ? !result : result,

@@ -3,14 +3,12 @@ import message from '@commitlint/message';
 import {Rule} from './types';
 
 const typeEnum: Rule<string[]> = (parsed, when = 'always', value = []) => {
-	const {type: input} = parsed;
-
-	if (!input) {
+	if (!parsed.type) {
 		return [true];
 	}
 
 	const negated = when === 'never';
-	const result = ensure.enum(input, value);
+	const result = ensure.enum(parsed.type, value);
 
 	return [
 		negated ? !result : result,

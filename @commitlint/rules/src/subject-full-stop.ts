@@ -6,14 +6,12 @@ const subjectFullStop: Rule<string> = (
 	when = 'always',
 	value = '.'
 ) => {
-	const input = parsed.subject;
-
-	if (!input) {
+	if (!parsed.subject) {
 		return [true];
 	}
 
 	const negated = when === 'never';
-	const hasStop = input[input.length - 1] === value;
+	const hasStop = parsed.subject[parsed.subject.length - 1] === value;
 
 	return [
 		negated ? !hasStop : hasStop,

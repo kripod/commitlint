@@ -1,7 +1,7 @@
 import {minLength} from '@commitlint/ensure';
 import {Rule} from './types';
 
-const bodyMinLength: Rule<number> = (parsed, when = 'always', value = 0) => {
+const bodyMinLength: Rule<number> = (parsed, when = undefined, value = 0) => {
 	if (!parsed.body) {
 		return [true];
 	}
